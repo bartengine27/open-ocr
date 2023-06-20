@@ -1,5 +1,6 @@
 FROM open-ocr:build
 
+RUN apt-get update
 # Get OpenCV libraries.
 RUN apt-get -q -y install \
   libopencv-core2.4v5 \

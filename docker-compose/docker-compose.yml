@@ -13,20 +13,6 @@ services:
     healthcheck:
       test: "nc -z localhost 5672"
 
-  # Start transformation worker
-  strokewidthtransform:
-    image: open-ocr-preprocessor:build
-    build:
-      context: ./open-ocr-preprocessor
-    container_name: open-ocr-preprocessor
-    volumes:
-      - ./scripts/:/opt/open-ocr/:ro
-    dns: ["8.8.8.8"]
-    depends_on:
-      - rabbitmq
-      - openocrworker
-    command: "/opt/open-ocr/open-ocr-preprocessor -amqp_uri amqp://admin:Phaish9ohbaidei6oole@rabbitmq/ -preprocessor stroke-width-transform"
-
   # Start OCR worker
   openocrworker:
     image: open-ocr:build
