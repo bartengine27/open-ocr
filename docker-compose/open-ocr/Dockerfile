@@ -1,10 +1,10 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 ENV GOPATH /opt/go
 
 # Get dependencies
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN sed -i -e 's/http:\/\/archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN sed -i -e 's/http:\/\/archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
 RUN apt-get update
 
 RUN apt-get install -y \
