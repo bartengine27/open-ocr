@@ -1,12 +1,12 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 ENV GOPATH /opt/go
 # tzdata is interactive, make it non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Get dependencies
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN sed -i -e 's/http:\/\/archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN sed -i -e 's/http:\/\/archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
 RUN apt-get update
 #add tesseract repo for v4, see https://ubuntuhandbook.org/index.php/2021/12/install-tesseract-ocr-5-ubuntu/
 #RUN add-apt-repository -y ppa:alex-p/tesseract-ocr
@@ -21,7 +21,7 @@ RUN apt-get install -y \
 # Get tesseract-ocr packages
 RUN apt-get install -y \
   libleptonica-dev \
-  libtesseract3 \
+  #libtesseract3 \
   libtesseract-dev \
   tesseract-ocr
 
@@ -35,8 +35,8 @@ RUN apt-get install -y \
 # In theory, should be able to set export TESSDATA_PREFIX=/usr/share/tesseract-ocr/,
 # but when I tried I still got error: Error opening data file /usr/local/share/tessdata/eng.traineddata
 # Workaround: just copy the data to where it expects
-RUN mkdir -p /usr/local/share/tessdata/ && \
-    cp -R /usr/share/tesseract-ocr/tessdata/* /usr/local/share/tessdata/
+#RUN mkdir -p /usr/local/share/tessdata/ && \
+#    cp -R /usr/share/tesseract-ocr/tessdata/* /usr/local/share/tessdata/
 
 RUN mkdir -p $GOPATH
 
