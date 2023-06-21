@@ -24,7 +24,7 @@ services:
     dns: ["8.8.8.8"]
     depends_on:
       - rabbitmq
-    command: "/opt/open-ocr/open-ocr-worker -amqp_uri amqp://admin:Phaish9ohbaidei6oole@rabbitmq/"
+    command: "/usr/bin/open-ocr-worker -amqp_uri amqp://admin:Phaish9ohbaidei6oole@rabbitmq/"
 
   # Start http server
   openocr:
@@ -39,4 +39,4 @@ services:
     dns: ["8.8.8.8"]
     depends_on:
       - rabbitmq
-    command: "/opt/open-ocr/open-ocr-httpd -amqp_uri amqp://admin:Phaish9ohbaidei6oole@rabbitmq/ -http_port 9292"
+    command: "/usr/bin/open-ocr-httpd -amqp_uri amqp://admin:Phaish9ohbaidei6oole@rabbitmq/ -http_port 9292"
